@@ -19,22 +19,31 @@ const createProduct = () => {
   // don't worry too much if some images load while the others don't.
   // it's probably not your fault
   product.image = `http://lorempixel.com/400/400/technics/${Math.ceil(Math.random() * Math.ceil(10))}`;
-  return product
+  return product;
 };
 
 const createProducts = () => {
   let productsArr = [];
-  for(let i = 0; i < 10; i++){
-    productsArr.push(createProduct())
+  for (let i = 0; i < 10; i++) {
+    productsArr.push(createProduct());
   }
-  return productsArr
-}
-
-const insertMockData = function() {
-  // Complete me please
-
+  return productsArr;
 };
 
+const insertMockData = function () {
+  // Complete me please
+  createProducts.forEach(element => {
+    Product.create(element)
+      .then(() => {
+        console.log('seed succesfull');
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  });
+};
+
+insertMockData();
 // NOTE: DO NOT invoke this function as part of your
 // server code - it is meant to only be run once so that
 // you have access to data to work with
