@@ -1,5 +1,5 @@
 const Product = require('./');
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
 // Fill in the definition of insertMockData so that when 
 // this file is run in the terminal with `node seed.js`, 

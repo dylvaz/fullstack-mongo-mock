@@ -1,14 +1,18 @@
 // build your database
-var mongoose = require('mongoose');
-var productSchema = require('./schema.js');
-var mongoUri = 'mongodb://localhost/ebidProducts';
+const mongoose = require('mongoose');
+const productSchema = require('./schema.js');
+const mongoUri = 'mongodb://localhost/ebidProducts';
 // allow use of es6 promises
 mongoose.Promise = global.Promise;
 
 // Connect Mongoose to our local MongoDB via URI specified above and export it below
-var db;
+mongoose.connect(mongoUri, {useNewUrlParser: true, useFindAndModify: false, useUnifiedTopology: true})
+.then(()=> {
+  console.log('Connected to mongo, good luck 💞');
+})
+.catch(err => {
+  console.error(err);
+});
 
 // Register the productSchema with Mongoose as the 'Product' collection.
-var Product;
-
-module.exports = Product;
+module.exports = mongoose.model('Product', productSchema);
