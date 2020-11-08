@@ -32,7 +32,7 @@ const controller = {
       });
   },
   delete: (req, res) => {
-    let { _id } = req.body;
+    let { _id } = req.params;
     Product.deleteOne({ _id })
       .then(() => {
         res.status(200).send('Succesfully deleted 🎉');
