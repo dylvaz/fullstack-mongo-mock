@@ -32,15 +32,14 @@ const createProducts = () => {
 
 const insertMockData = function () {
   // Complete me please
-  createProducts.forEach(element => {
-    Product.create(element)
-      .then(() => {
-        console.log('seed succesfull');
-      })
-      .catch(err => {
-        console.error(err);
-      });
-  });
+  Product.insertMany(createProducts())
+    .then(() => {
+      console.log('seeded');
+      mongoose.connection.close();
+    })
+    .catch(err => {
+      console.error(err);
+    });
 };
 
 insertMockData();
